@@ -10,8 +10,6 @@ using namespace std;
 
 int main()
 {
-	Sorter sort;
-
 	// init paths
 	string searchPath;
 	string sortPath;
@@ -36,29 +34,9 @@ int main()
 		Sorter::createDirectory(sortPath);
 	} while (!Sorter::isPathCorrect(sortPath));
 	
-
-	// recursive search in derectory for all files
-	cout << "Search in \'" << searchPath << "\'...\n";
-
-	vector<fs::path> files;
-	set<fs::path> extensions;
-
-	fs::recursive_directory_iterator it(searchPath);
-	fs::recursive_directory_iterator endit;
-	while (it != endit)
-	{
-		if (fs::is_regular_file(*it)) {
-			files.push_back(it->path().filename());
-			extensions.insert(it->path().extension());
-		}
-		++it;
-	}
-
-	cout << "Find " << files.size() << " files...\n\t_M_ images\n\t_Z_ audio\n";
-	for (auto e : extensions)
-		cout << e << endl;
-
-
+	Sorter sort;
+	sort.search(searchPath);
+	sort.setup();
 
 	// start first thread
 	//sorter.search(searchPath);

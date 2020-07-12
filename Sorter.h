@@ -2,6 +2,7 @@
 
 #include <string>
 #include <vector>
+#include <set>
 
 #define _SILENCE_EXPERIMENTAL_FILESYSTEM_DEPRECATION_WARNING
 #include <experimental/filesystem>
@@ -15,6 +16,7 @@ public:
 	~Sorter();
 
 	void search(const std::string& path);
+	void setup();
 	static bool isPathCorrect(const std::string& path);
 	static void createDirectory(const std::string& path);
 	void sort();	//second thread sorting (also searching copies) when files attemped
@@ -39,5 +41,6 @@ public:
 		*/
 
 private:
-	std::vector<std::string> paths{};
+	vector<fs::path> files;
+	set<fs::path> extensions;
 };
