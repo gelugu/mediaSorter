@@ -17,14 +17,16 @@ int main()
 	// input paths
 	SetConsoleCP(1251);
 	SetConsoleOutputCP(1251);
+	/*
 	do {
 		system("cls");
-		cout << "\n\tChoose folder: "; //cin >> searchPath;
+		cout << "\n\tChoose folder: ";
 		getline(cin, searchPath);
 	} while (!Sorter::isPathCorrect(searchPath));
 	do {
 		system("cls");
-		cout << "\n\tChoose save folder: "; cin >> sortPath;
+		cout << "\n\tChoose save folder: ";
+		getline(cin, sortPath);
 
 		if (!Sorter::isPathCorrect(sortPath.substr(0, 2))) {
 			cout << "Local disk " << sortPath.substr(0, 2) << "don't exist." << endl;
@@ -33,10 +35,13 @@ int main()
 		}
 		Sorter::createDirectory(sortPath);
 	} while (!Sorter::isPathCorrect(sortPath));
-	
+	*/
 	Sorter sort;
+	searchPath = "C:\\Users\\user\\Desktop\\_testRoom";
 	sort.search(searchPath);
 	sort.setup();
+	sortPath = "C:\\Users\\user\\Desktop\\_testRoom\\output";
+	sort.sort(sortPath);
 
 	// start first thread
 	//sorter.search(searchPath);

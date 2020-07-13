@@ -1,11 +1,16 @@
 #pragma once
 
+#define _SILENCE_EXPERIMENTAL_FILESYSTEM_DEPRECATION_WARNING
+#include <experimental/filesystem>
+
+// debug
+#include <iostream>
+#include <Windows.h>
+
 #include <string>
 #include <vector>
 #include <set>
-
-#define _SILENCE_EXPERIMENTAL_FILESYSTEM_DEPRECATION_WARNING
-#include <experimental/filesystem>
+#include <map>
 
 namespace fs = std::experimental::filesystem;
 
@@ -15,11 +20,12 @@ public:
 	Sorter();
 	~Sorter();
 
-	void search(const std::string& path);
-	void setup();
 	static bool isPathCorrect(const std::string& path);
 	static void createDirectory(const std::string& path);
-	void sort();	//second thread sorting (also searching copies) when files attemped
+
+	void search(const std::string& path);
+	void setup();
+	void sort(const fs::path& path);	//second thread sorting (also searching copies) when files attemped
 		/*
 			sort dir:
 				-year
@@ -41,6 +47,6 @@ public:
 		*/
 
 private:
-	vector<fs::path> files;
-	set<fs::path> extensions;
+	std::vector<fs::path> files;
+	std::map<fs::path, fs::path> extensionsPath;
 };
